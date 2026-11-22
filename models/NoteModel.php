@@ -35,19 +35,9 @@
             return $stmt->fetch();
         }
 
-        public function updateNote(int $noteId, int $userId, string $body) : bool {
-            $stmt = $this->database->prepare("UPDATE notes SET body = :body WHERE note_id = :noteId AND user_id = :userId");
-            $stmt->execute([
-                "noteId" => $noteId,
-                "userId" => $userId,
-                "body" => $body
-            ]);
-
-            return $stmt->rowCount() > 0;
-        }
 
         public function deleteNote(int $noteId, int $userId) : bool {
-            $stmt = $this->database->prepare("DELETE FROM note WHERE note_id = :noteId AND user_id = :userId");
+            $stmt = $this->database->prepare("DELETE FROM notes WHERE note_id = :noteId AND user_id = :userId");
             return $stmt->execute(
                 [
                     "noteId" => $noteId,

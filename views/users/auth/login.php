@@ -130,6 +130,6 @@
 <?php 
     $title = "Login";
     $content = ob_get_clean();
-    require __DIR__. "/../layer.php";
+    require __DIR__. "/layer.php";
 ?>
 ?>

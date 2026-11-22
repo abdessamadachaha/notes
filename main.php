@@ -8,10 +8,10 @@
     session_start();
 
     $database = new Database();
-    // $noteModel = new NoteModel($database->connect());
+    $noteModel = new NoteModel($database->connect());
     $userModel = new UserModel($database->connect());
 
-    // $noteController = new NoteController($noteModel);
+    $noteController = new NoteController($noteModel);
 
     $userController = new UserController($userModel);
 
@@ -23,7 +23,11 @@
         "/notes/main.php?action=login" => [$userController, "login"],
         "/notes/main.php?action=store" => [$userController, "store"],
         "/notes/main.php?action=register" => [$userController, "register"],
-        "/notes/main.php?action=dashboard" => [$userController, "dashboard"]
+        "/notes/main.php?action=dashboard" => [$userController, "dashboard"],
+        "/notes/main.php?action=notes" => [$noteController, "index"],
+        "/notes/main.php?action=create" => [$noteController, "create"],
+        "/notes/main.php?action=storenote" => [$noteController, "storeNote"],
+        "/notes/main.php?action=delete" => [$noteController, "delete"]
      ];
 
     if (array_key_exists($url, $routes)) {
